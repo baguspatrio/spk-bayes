@@ -17,11 +17,12 @@ class CreateDataAsliTable extends Migration
             $table->id();
             $table->string('kepribadian');
             $table->string('statusRumah');
-            $table->string('tempatUsaha');
+            $table->string('statusTempatusaha');
             $table->integer('jumlahTanggungan');
-            $table->integer('kapasitasKemampuan');
-            $table->integer('jumlahPinjaman');
-            $table->integer('jumlahAngsuran');
+            $table->biginteger('kemampuan')->nullable();
+            $table->biginteger('jumlahPinjaman');
+            $table->biginteger('nilaiJaminan')->nullable();
+            $table->biginteger('angsuran');
             $table->integer('lamaAngsuran');
             $table->string('keterangan');
             $table->timestamps();

@@ -4,7 +4,7 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                  <form action="" method="POST" enctype="multipart/form-data">
+                  <form action="/importfile" method="POST" enctype="multipart/form-data">
                     <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
               </div>

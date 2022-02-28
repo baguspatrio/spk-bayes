@@ -14,63 +14,50 @@
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Kepribadian</th>
+                        <th>Status Rumah</th>
+                        <th>Status Tempat Usaha</th>
+                        <th>Jumlah Tanggungan</th>
+                        <th>Kemampuan</th>
+                        <th>Jumlah Pinjaman</th>
+                        <th>Nilai Jaminan</th>
+                        <th>Angsuran</th>
+                        <th>Lama Angsuran</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                         <th>Start date</th>
-                        <th>Salary</th>
+                         <th>Kepribadian</th>
+                        <th>Status Rumah</th>
+                        <th>Status Tempat Usaha</th>
+                        <th>Jumlah Tanggungan</th>
+                        <th>Kemampuan</th>
+                        <th>Jumlah Pinjaman</th>
+                        <th>Nilai Jaminan</th>
+                        <th>Angsuran</th>
+                        <th>Lama Angsuran</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                       </tr>
                     </tfoot>
                     <tbody>
+                     @foreach ($data as $key)
                       <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        
-                      </tr>
-                     
+                        <td>{{ $key->kepribadian }}</td>
+                        <td>{{ $key->statusRumah }}</td>
+                        <td>{{ $key->statusTempatusaha }}</td>
+                        <td>{{ $key->jumlahTanggungan }}</td>
+                        <td>{{ $key->kemampuan }}</td>
+                        <td>{{ $key->jumlahPinjaman }}</td>
+                        <td>{{ $key->nilaiJaminan }}</td>
+                        <td>{{ $key->angsuran }}</td>
+                        <td>{{ $key->lamaAngsuran }}</td>
+                        <td>{{ $key->keterangan }}</td>
+                        <td><a href="" class="btn btn-primary">Edit</a><a href="" class="btn btn-danger">Hapus</a></td>
+                      </tr> 
+                        @endforeach
                     </tbody>
                   </table>
                 </div>

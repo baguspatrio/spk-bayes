@@ -1,6 +1,9 @@
 <?php
 
+
+use App\Http\Controllers\DataAsliController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
-Route::get('dataasli', function () {
-    return view('dataasli.dataasli');
-});
+Route::resource('dataasli', DataAsliController::class);
+Route::post('importfile',[ DataAsliController::class,'importExcel']);
