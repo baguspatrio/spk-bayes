@@ -2,6 +2,7 @@
 @section('konten')
 @include('dataasli.modal')
 @include('dataasli.modaltambahdata')
+@include('dataasli.modaledit');
     <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">
@@ -55,7 +56,14 @@
                         <td>{{ $key->angsuran }}</td>
                         <td>{{ $key->lamaAngsuran }}</td>
                         <td>{{ $key->keterangan }}</td>
-                        <td><a href="" class="btn btn-primary">Edit</a><a href="" class="btn btn-danger">Hapus</a></td>
+                        <td>
+                          <button type="button" class="btn-primary m-3" data-toggle="modal" data-target="#edit{{ $key->id }}"id="#myBtn">Edit</button>
+                          <form action="{{ url('dataasli/'.$key->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')" >
+                          @csrf
+                          <input type="hidden" name="_method" value="DELETE">
+                          <button type="submit" class="btn btn-danger">Hapus</button>
+                          </form>
+                         </td>
                       </tr> 
                         @endforeach
                     </tbody>

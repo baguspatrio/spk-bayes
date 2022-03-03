@@ -33,23 +33,6 @@ class DataAsliController extends Controller
     public function importExcel(Request $request){
 
         Excel::import(new dataAsliimport, request()->file('file'));
-        //validasi
-        // $this->validate($request,
-        // [
-        //     'file'=>'required|mimes:csv,xls,xlsx'
-        // ]);
-
-        // $file=$request->file('file');
-
-        // $nama_file = rand().$file->getClientOriginalName();
-        // //upload file ke folder
-        // $file->move('filedata',$nama_file);
-
-        // //membuat nama file unik
-		
-        // //import file
-        // Excel::import(new dataAsliimport, public_path('/filedata/'.$nama_file));
-
         return redirect()->back();
     }
     public function store(Request $request)
@@ -57,48 +40,30 @@ class DataAsliController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+       $data = DataAsliModel::find($id);
+        return view('dataasli.dataasli', compact('data'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
+       $data = DataAsliModel::find($id);
+        return view('dataasli.dataasli', compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
-        //
+        $data= DataAsliModel::find($id);
+        $data->delete();
+        return redirect()->back();
     }
 }
