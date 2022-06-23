@@ -11,16 +11,14 @@ class DataAsliModel extends Model
     
     protected $table="data_asli";
        protected $fillable = [
-        'kepribadian',
-        'statusRumah',
-        'statusTempatusaha',
-        'jumlahTanggungan',
-        'kemampuan',
-        'jumlahPinjaman',
-        'nilaiJaminan',
-        'angsuran',
-        'lamaAngsuran',
-        'keterangan',
+        'nama',
+        'pekerjaan',
+        'jumlahPengajuan',
+        'jenisPembayaran',
+        'jangkaWaktu',
+        'metodePembayaran',
+        'kapasitasBulanan',
+        
     ];
 
 }

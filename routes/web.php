@@ -21,3 +21,4 @@ Route::get('/', function () {
 });
 Route::resource('dataasli', DataAsliController::class);
 Route::post('importfile',[ DataAsliController::class,'importExcel']);
+Route::get('hapusduplikat',[DataAsliController::class,'hapusDuplikat']);

@@ -17,16 +17,14 @@ class dataAsliimport implements ToModel,WithHeadingRow
     public function model(array $row)
     {       
         return new DataAsliModel([
-            'kepribadian'=>$row['kepribadian'],
-            'statusRumah'=>$row['statusrumah'],
-            'statusTempatusaha'=>$row['statustempatusaha'],
-            'jumlahTanggungan'=>$row['jumlahtanggungan'],
-            'kemampuan'=>$row['kemampuan'],
-            'jumlahPinjaman'=>$row['jumlahpinjaman'],
-            'nilaiJaminan'=>$row['nilaijaminan'],
-            'angsuran'=>$row['angsuran'],
-            'lamaAngsuran'=>$row['lamaangsuran'],
-            'keterangan'=>$row['keterangan'],
+            'nama'=>$row['nama'],
+            'pekerjaan'=>$row['pekerjaan'],
+            'jumlahPengajuan'=>$row['jumlahpengajuan'],
+            'jenisPembayaran'=>$row['jenispembayaran'],
+            'jangkaWaktu'=>$row['jangkawaktu'],
+            'metodePembayaran'=>$row['metodepembayaran'],
+            'kapasitasBulanan'=>$row['kapasitasbulanan'],
+            
         ]);
     }
 }

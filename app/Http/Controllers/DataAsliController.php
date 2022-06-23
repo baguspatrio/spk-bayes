@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DataAsliModel;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\dataAsliimport;
+use DB;
 
 class DataAsliController extends Controller
 {
@@ -27,7 +28,7 @@ class DataAsliController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     public function importExcel(Request $request){
@@ -37,7 +38,16 @@ class DataAsliController extends Controller
     }
     public function store(Request $request)
     {
-        //
+        $model= new DataAsliModel;
+        $model->nama = $request->nama;
+        $model->pekerjaan = $request->pekerjaan;
+        $model->jumlahPengajuan = $request->jumlahPengajuan;
+        $model->jenisPembayaran= $request->jenisPembayaran;
+        $model->jangkaWaktu=$request->jangkaWaktu;
+        $model->metodePembayaran=$request->metodePembayaran;
+        $model->kapasitasBulanan=$request->kapasitasBulanan;
+        $model->save();
+        return redirect()->back();
     }
 
     public function show($id)
@@ -57,6 +67,41 @@ class DataAsliController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function hapusDuplikat(){
+        $jumlahduplikat=1;
+        $data=DataAsliModel::all();
+        foreach ($data as $key ) {
+            $id=$key->id;
+            $nama=$key->nama;
+            $pekerjaan=$key->pekerjaan;
+            $jumlahPengajuan=$key->jumlahPengajuan;
+            $jenisPembayaran=$key->jenisPembayaran;
+            $jangkaWaktu=$key->jangkaWaktu;
+            $metodePembayaran=$key->metodePembayaran;
+            $kapasitasBulanan=$key->kapasitasBulanan;
+
+            $flag=DB::table('data_asli')
+            ->where('nama','=',$nama)
+            ->where('pekerjaan','=',$pekerjaan)
+            ->where('jumlahPengajuan','=',$jumlahPengajuan)
+            ->where('jenisPembayaran','=',$jenisPembayaran)
+            ->where('jangkaWaktu','=',$jangkaWaktu)
+            ->where('metodePembayaran','=',$metodePembayaran)
+            ->where('kapasitasBulanan','=',$kapasitasBulanan)
+            
+            ->get();
+
+            if ($flag->count()>1) {
+
+               $hapus=DataAsliModel::find($id);
+               $hapus->delete();
+               $jumlahduplikat++;
+            }
+           
+        }
+      return redirect()->back();
     }
 
    

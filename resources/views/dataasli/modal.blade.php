@@ -12,12 +12,12 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                            @csrf
+                      @csrf
                             <input type="file" name="file">
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
                 </form>
               </div>

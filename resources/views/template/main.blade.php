@@ -14,6 +14,7 @@
   <link href="{{ ('asset/css/ruang-admin.min.css') }}" rel="stylesheet">
   <link href="{{ ('asset/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{('asset/css/button-dataTables.css') }}">
+   
 </head>
 
 <body id="page-top">
@@ -73,18 +74,7 @@
                 <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
+                
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -172,6 +162,7 @@
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+ 
    <script>
     // $(document).ready(function () {
     //   $('#dataTable').DataTable(); // ID From dataTable 
@@ -193,6 +184,18 @@
                 })
             });
   </script>
+  <script>
+
+function startCalc(){
+interval = setInterval("calc()",1);}
+function calc(){
+one = document.autoSumForm.pendapatan.value;
+two = document.autoSumForm.konsumsi.value; 
+three = document.autoSumForm.persen.value; 
+document.autoSumForm.kapasitasBulanan.value = ((one * 1) - (two * 1)) * (three * 1);}
+function stopCalc(){
+clearInterval(interval);}
+</script>
 </body>
 
 </html>
