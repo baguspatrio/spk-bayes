@@ -11,6 +11,7 @@
                   <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button>
                   <button type="button" class="btn-info"data-toggle="modal" data-target="#importdata"id="#myBtn">Import Data</button>
                   <a href="hapusduplikat" class=" btn btn-danger ml-3 ">Hapus Duplikat</a>
+                  <a href="transform" class=" btn btn-danger ml-3 ">Transformasi Data</a>
                   {{-- <form action="{{ url('hapusduplikat') }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -28,6 +29,7 @@
                         <th>Jangka Waktu</th>
                         <th>Metode Pembayaran</th>
                         <th>Kapasitas Bulanan</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -40,6 +42,7 @@
                         <th>Jangka Waktu</th>
                         <th>Metode Pembayaran</th>
                         <th>Kapasitas Bulanan</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
                     </tfoot>
@@ -53,6 +56,7 @@
                         <td>{{ $key->jangkaWaktu}}</td>
                         <td>{{ $key->metodePembayaran}}</td>
                         <td>{{ $key->kapasitasBulanan }}</td>
+                        <td>{{ $key->keterangan }}</td>
                         <td>
                           <button type="button" class="btn-primary m-3" data-toggle="modal" data-target="#edit{{ $key->id }}"id="#myBtn">Edit</button>
                           <form action="{{ url('dataasli/'.$key->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')" >

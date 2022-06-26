@@ -24,6 +24,7 @@ class dataAsliimport implements ToModel,WithHeadingRow
             'jangkaWaktu'=>$row['jangkawaktu'],
             'metodePembayaran'=>$row['metodepembayaran'],
             'kapasitasBulanan'=>$row['kapasitasbulanan'],
+            'keterangan'=>$row['keterangan'],
             
         ]);
     }

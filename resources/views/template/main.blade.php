@@ -43,16 +43,22 @@
           <span>Data Asli</span>
         </a>
       </li>
+       <li class="nav-item Request::path()== 'datatraining'? 'active' : '' ">
+        <a class="nav-link" href="ui-colors.html">
+          <i class="fas fa-fw fa-palette"></i>
+          <span>Data Set</span>
+        </a>
+      </li>
       <li class="nav-item Request::path()== 'datatraining'? 'active' : '' ">
         <a class="nav-link" href="ui-colors.html">
           <i class="fas fa-fw fa-palette"></i>
-          <span>Data Training</span>
+          <span>Data Training & Data Testing</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="ui-colors.html">
           <i class="fas fa-fw fa-palette"></i>
-          <span>Data Uji</span>
+          <span>Uji Data</span>
         </a>
       </li>
       {{-- <div class="version" id="version-ruangadmin"></div> --}}
