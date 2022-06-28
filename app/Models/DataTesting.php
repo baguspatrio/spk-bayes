@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataSetModel extends Model
+class DataTesting extends Model
 {
     use HasFactory;
-     protected $table="dataset";
+    protected $table="datatesting";
        protected $fillable = [
         'nama',
         'pekerjaan',
@@ -17,7 +17,5 @@ class DataSetModel extends Model
         'jangkaWaktu',
         'metodePembayaran',
         'kapasitasBulanan',
-        'keterangan',
-        
-    ];
+        'keterangan',];
 }

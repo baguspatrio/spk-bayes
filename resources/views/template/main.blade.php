@@ -43,8 +43,8 @@
           <span>Data Asli</span>
         </a>
       </li>
-       <li class="nav-item Request::path()== 'datatraining'? 'active' : '' ">
-        <a class="nav-link" href="ui-colors.html">
+       <li class="nav-item {{ Request::path()== 'dataset'? 'active' : ''  }}">
+        <a class="nav-link" href="{{ url('dataset') }}">
           <i class="fas fa-fw fa-palette"></i>
           <span>Data Set</span>
         </a>

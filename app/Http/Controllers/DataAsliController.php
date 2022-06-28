@@ -70,43 +70,45 @@ class DataAsliController extends Controller
         //
     }
 
-    public function hapusDuplikat(){
-        $jumlahduplikat=1;
-        $data=DataAsliModel::all();
-        foreach ($data as $key ) {
-            $id=$key->id;
-            $nama=$key->nama;
-            $pekerjaan=$key->pekerjaan;
-            $jumlahPengajuan=$key->jumlahPengajuan;
-            $jenisPembayaran=$key->jenisPembayaran;
-            $jangkaWaktu=$key->jangkaWaktu;
-            $metodePembayaran=$key->metodePembayaran;
-            $kapasitasBulanan=$key->kapasitasBulanan;
-            $keterangan=$key->keterangan;
+    // public function hapusDuplikat(){
+    //     $jumlahduplikat=1;
+    //     $data=DataAsliModel::all();
+    //     foreach ($data as $key ) {
+    //         $id=$key->id;
+    //         $nama=$key->nama;
+    //         $pekerjaan=$key->pekerjaan;
+    //         $jumlahPengajuan=$key->jumlahPengajuan;
+    //         $jenisPembayaran=$key->jenisPembayaran;
+    //         $jangkaWaktu=$key->jangkaWaktu;
+    //         $metodePembayaran=$key->metodePembayaran;
+    //         $kapasitasBulanan=$key->kapasitasBulanan;
+    //         $keterangan=$key->keterangan;
 
-            $flag=DB::table('data_asli')
-            ->where('nama','=',$nama)
-            ->where('pekerjaan','=',$pekerjaan)
-            ->where('jumlahPengajuan','=',$jumlahPengajuan)
-            ->where('jenisPembayaran','=',$jenisPembayaran)
-            ->where('jangkaWaktu','=',$jangkaWaktu)
-            ->where('metodePembayaran','=',$metodePembayaran)
-            ->where('kapasitasBulanan','=',$kapasitasBulanan)
-            ->where('keterangan','=',$keterangan)
+    //         $flag=DB::table('data_asli')
+    //         ->where('nama','=',$nama)
+    //         ->where('pekerjaan','=',$pekerjaan)
+    //         ->where('jumlahPengajuan','=',$jumlahPengajuan)
+    //         ->where('jenisPembayaran','=',$jenisPembayaran)
+    //         ->where('jangkaWaktu','=',$jangkaWaktu)
+    //         ->where('metodePembayaran','=',$metodePembayaran)
+    //         ->where('kapasitasBulanan','=',$kapasitasBulanan)
+    //         ->where('keterangan','=',$keterangan)
             
-            ->get();
+    //         ->get();
 
-            if ($flag->count()>1) {
+    //         if ($flag->count()>1) {
 
-               $hapus=DataAsliModel::find($id);
-               $hapus->delete();
-               $jumlahduplikat++;
-            }
+    //            $hapus=DataAsliModel::find($id);
+    //            $hapus->delete();
+    //            $jumlahduplikat++;
+    //         }
            
-        }
-      return redirect()->back();
-    }
+    //     }
+    //   return redirect()->back();
+    // }
 
+
+    //preprosessing data hapus duplikat dan transformasi data
     public function transform(){
 
     $data=DataAsliModel::all();

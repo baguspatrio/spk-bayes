@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\DataAsliController;
+use App\Http\Controllers\DataSetController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,3 +24,5 @@ Route::resource('dataasli', DataAsliController::class);
 Route::post('importfile',[ DataAsliController::class,'importExcel']);
 Route::get('hapusduplikat',[DataAsliController::class,'hapusDuplikat']);
 Route::get('transform',[DataAsliController::class,'transform']);
+Route::resource('dataset',DataSetController::class);
+Route::get('ujidataset',[DataSetController::class,'ujidataset']);
