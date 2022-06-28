@@ -17,5 +17,7 @@ class DataTraining extends Model
         'jangkaWaktu',
         'metodePembayaran',
         'kapasitasBulanan',
-        'keterangan',];
+        'keterangan',
+        'prediksi',
+      ];
 }

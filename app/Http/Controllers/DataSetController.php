@@ -121,9 +121,9 @@ class DataSetController extends Controller
 
     // nilai probabilitas setiap atribut
     //pekerjaan
-    $htgpekerjaan1=DB::table('datatraining')->where('pekerjaan','=','PNS')->where('keterangan','=','Lancar');
-    $htgpekerjaan2=DB::table('datatraining')->where('pekerjaan','=','Pedagang')->where('keterangan','=','Lancar');
-    $htgpekerjaan3=DB::table('datatraining')->where('pekerjaan','=','Karyawan')->where('keterangan','=','Lancar');
+    $htgpekerjaan1=DB::table('datatraining')->where('pekerjaan','=','PNS')->where('keterangan','=','Lancar')->get()->count();
+    $htgpekerjaan2=DB::table('datatraining')->where('pekerjaan','=','Pedagang')->where('keterangan','=','Lancar')->get()->count();
+    $htgpekerjaan3=DB::table('datatraining')->where('pekerjaan','=','Karyawan')->where('keterangan','=','Lancar')->get()->count();
   //pengajuan
     $hitungpengajuan1=DB::table('datatraining')->where('jumlahPengajuan','=','<=5000000')->where('keterangan','=','Lancar') ->get()->count();
     $hitungpengajuan2=DB::table('datatraining')->where('jumlahPengajuan','=','<=20000000')->where('keterangan','=','Lancar') ->get()->count();
@@ -140,15 +140,15 @@ class DataSetController extends Controller
     $htgwaktu4=DB::table('datatraining')->where('jangkaWaktu','=','24')->where('keterangan','=','Lancar')->get()->count();
     $htgwaktu5=DB::table('datatraining')->where('jangkaWaktu','=','36')->where('keterangan','=','Lancar')->get()->count();
     //metode pembayaran
-    $pembayaran=DB::table('datatraining')->where('metodePembayaran','=','Transfer')->where('keterangan','=','Lancar')->get()->count();
-    $pembayaran=DB::table('datatraining')->where('metodePembayaran','=','Kantor KSPPS BMT Al Ikhwan')->where('keterangan','=','Lancar')->get()->count();
+    $pembayaran1=DB::table('datatraining')->where('metodePembayaran','=','Transfer')->where('keterangan','=','Lancar')->get()->count();
+    $pembayaran2=DB::table('datatraining')->where('metodePembayaran','=','Kantor KSPPS BMT Al Ikhwan')->where('keterangan','=','Lancar')->get()->count();
 
 
     //tidak lancar
     //pekerjaan
-    $htgpekerjaantdklancar1=DB::table('datatraining')->where('pekerjaan','=','PNS')->where('keterangan','=','Tidak Lancar');
-    $htgpekerjaantdklancar2=DB::table('datatraining')->where('pekerjaan','=','Pedagang')->where('keterangan','=','Tidak Lancar');
-    $htgpekerjaantdklancar3=DB::table('datatraining')->where('pekerjaan','=','Karyawan')->where('keterangan','=','Tidak Lancar');
+    $htgpekerjaantdklancar1=DB::table('datatraining')->where('pekerjaan','=','PNS')->where('keterangan','=','Tidak Lancar')->get()->count();
+    $htgpekerjaantdklancar2=DB::table('datatraining')->where('pekerjaan','=','Pedagang')->where('keterangan','=','Tidak Lancar')->get()->count();
+    $htgpekerjaantdklancar3=DB::table('datatraining')->where('pekerjaan','=','Karyawan')->where('keterangan','=','Tidak Lancar')->get()->count();
     //pengajuan
     $htgpengajuantdklancar1=DB::table('datatraining')->where('jumlahPengajuan','=','<=5000000')->where('keterangan','=','Tidak Lancar') ->get()->count();
     $htgpengajuantdklancar2=DB::table('datatraining')->where('jumlahPengajuan','=','<=20000000')->where('keterangan','=','Tidak Lancar') ->get()->count();
@@ -165,14 +165,73 @@ class DataSetController extends Controller
     $htgwaktutdklancar4=DB::table('datatraining')->where('jangkaWaktu','=','24')->where('keterangan','=','Lancar')->get()->count();
     $htgwaktutdklancar5=DB::table('datatraining')->where('jangkaWaktu','=','36')->where('keterangan','=','Lancar')->get()->count();
     //metode pembayaran
-    $pembayarantdklancar=DB::table('datatraining')->where('metodePembayaran','=','Transfer')->where('keterangan','=','Tidak Lancar')->get()->count();
-    $pembayarantdklancar=DB::table('datatraining')->where('metodePembayaran','=','Kantor KSPPS BMT Al Ikhwan')->where('keterangan','=','Tidak Lancar')->get()->count();
+    $pembayarantdklancar1=DB::table('datatraining')->where('metodePembayaran','=','Transfer')->where('keterangan','=','Tidak Lancar')->get()->count();
+    $pembayarantdklancar2=DB::table('datatraining')->where('metodePembayaran','=','Kantor KSPPS BMT Al Ikhwan')->where('keterangan','=','Tidak Lancar')->get()->count();
+
+    //probabilitas atribut lancar
+    //pekerjaan
+    $probpns=(round($htgpekerjaan1/$jumlahlancar,5)) ;
+    $probpedagang=(round($htgpekerjaan2/$jumlahlancar,5));
+    $probkaryawan=(round($htgpekerjaan3/$jumlahlancar,5));
+    //jumlah pengajuan
+    $probpengajuan1=(round($hitungpengajuan1/$jumlahlancar,5));
+    $probpengajuan2=(round($hitungpengajuan2/$jumlahlancar,5));
+    $probpengajuan3=(round($hitungpengajuan3/$jumlahlancar,5));
+    $probpengajuan4=(round($hitungpengajuan4/$jumlahlancar,5));
+    $probpengajuan5=(round($hitungpengajuan5/$jumlahlancar,5));
+    //jenispembayaran
+    $probjnspembayaran1=(round($htgjnspembayaran1/$jumlahlancar,5));
+    $probjnspembayaran2=(round($htgjnspembayaran2/$jumlahlancar,5));
+    //jangka waktu
+    $probjgkwaktu1=(round($htgwaktu1/$jumlahlancar,5));
+    $probjgkwaktu2=(round($htgwaktu2/$jumlahlancar,5));
+    $probjgkwaktu3=(round($htgwaktu3/$jumlahlancar,5));
+    $probjgkwaktu4=(round($htgwaktu4/$jumlahlancar,5));
+    $probjgkwaktu5=(round($htgwaktu5/$jumlahlancar,5));
+    //metode pembayaran
+    $probmtdpembayaran1=(round($pembayaran1/$jumlahlancar,5));
+    $probmtdpembayaran2=(round($pembayaran2/$jumlahlancar,5));
+
+    //probabilitias tidak Lancar
+    //pekerjaan
+    $probpnstdkLancar=(round($htgpekerjaantdklancar1/$jumlahtidaklancar,5)) ;
+    $probpedagangtdkLancar=(round($htgpekerjaantdklancar2/$jumlahtidaklancar,5));
+    $probkaryawantdkLancar=(round($htgpekerjaantdklancar3/$jumlahtidaklancar,5));
+    
+    //jumlah pengajuan
+    $probpengajuantdklancar1=(round($hitungpengajuan1/$jumlahtidaklancar,5));
+    $probpengajuantdklancar2=(round($hitungpengajuan2/$jumlahtidaklancar,5));
+    $probpengajuantdklancar3=(round($hitungpengajuan3/$jumlahtidaklancar,5));
+    $probpengajuantdklancar4=(round($hitungpengajuan4/$jumlahtidaklancar,5));
+    $probpengajuantdklancar5=(round($hitungpengajuan5/$jumlahtidaklancar,5));
+    //jenis pembayaran
+    $probjnspembayarantdklancar1=(round($htgjnspembayarantdklancar1/$jumlahtidaklancar,5));
+    $probjnspembayarantdklancar2=(round($htgjnspembayarantdklancar2/$jumlahtidaklancar,5));
+    //jangka waktu 
+    $probjgkwaktutdklancar1=(round($htgwaktutdklancar1/$jumlahtidaklancar,5));
+    $probjgkwaktutdklancar2=(round($htgwaktutdklancar2/$jumlahtidaklancar,5));
+    $probjgkwaktutdklancar3=(round($htgwaktutdklancar3/$jumlahtidaklancar,5));
+    $probjgkwaktutdklancar4=(round($htgwaktutdklancar4/$jumlahtidaklancar,5));
+    $probjgkwaktutdklancar5=(round($htgwaktutdklancar5/$jumlahtidaklancar,5));
+
+    //metode pembayaran
+    $probmtdpembayarantdklancar1=(round($pembayarantdklancar1/$jumlahtidaklancar,5));
+    $probmtdpembayarantdklancar2=(round($pembayarantdklancar2/$jumlahtidaklancar,5));
+
+    $lancar=$probpns*$probkaryawan*$probpedagang*$probpengajuan1*$probpengajuan2*$probpengajuan3*$probpengajuan4*$probpengajuan5*$probjnspembayaran1*$probjnspembayaran2*$probjgkwaktu1*$probjgkwaktu2*$probjgkwaktu3*$probjgkwaktu4*$probjgkwaktu5*$probmtdpembayaran1*$probmtdpembayaran2;
+    $tidaklancar=$probpnstdkLancar*$probkaryawantdkLancar*$probpedagangtdkLancar*$probpengajuantdklancar1*$probpengajuantdklancar2*$probpengajuantdklancar3*$probpengajuantdklancar4*$probpengajuantdklancar4*$probpengajuantdklancar5*
+    $probjnspembayarantdklancar1*$probjnspembayarantdklancar2*$probjgkwaktutdklancar1*$probjgkwaktutdklancar2*$probjgkwaktutdklancar3*$probjgkwaktutdklancar4*$probjgkwaktutdklancar5*$probmtdpembayarantdklancar1*$probmtdpembayarantdklancar2;
+    
+    if ($lancar>$tidaklancar) {
+        $prediksi="Lancar";
+    }else {
+        $prediksi="Tidak Lancar";
+    }
+    $model=new DataTraining;
+    $model->prediksi= $prediksi;
+    $model->save();
 
 
- echo "$hitungpengajuan1<br>$hitungpengajuan2<br>$hitungpengajuan3<br>$hitungpengajuan4<br>$hitungpengajuan5";
-    // while ($atribut) {
-    //     echo $atribut;
-    // }
 
    }
 
