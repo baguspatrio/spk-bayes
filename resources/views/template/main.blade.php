@@ -55,8 +55,14 @@
           <span>Data Training & Data Testing</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="ui-colors.html">
+      <li class="nav-item Request::path()== 'pemodelan'? 'active' : '' ">
+        <a class="nav-link" href="{{ url('dataset') }}">
+          <i class="fas fa-fw fa-palette"></i>
+          <span>Pemodelan</span>
+        </a>
+      </li>
+      <li class="nav-item Request::path()== 'datauji'? 'active' : '' ">
+        <a class="nav-link" href="{{ url('datauji') }}">
           <i class="fas fa-fw fa-palette"></i>
           <span>Uji Data</span>
         </a>

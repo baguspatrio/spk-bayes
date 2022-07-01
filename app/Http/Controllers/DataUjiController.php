@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataUji;
 use Illuminate\Http\Request;
-use App\Models\DataSetModel;
-use App\Models\DataAsliModel; 
-use App\Models\DataTesting;
-use App\Models\DataTraining;
-use App\Models\Atribut;
 use App\Models\Perhitungan;
 use DB;
 
-class DataSetController extends Controller
+class DataUjiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +16,8 @@ class DataSetController extends Controller
      */
     public function index()
     {
-        $data= DataSetModel::all();
-        return view('dataset.dataset',compact('data'));
+        $data=DataUji::all();
+        return view('datauji.datauji',compact('data'));
     }
 
     /**
@@ -31,7 +27,8 @@ class DataSetController extends Controller
      */
     public function create()
     {
-        $data=DataAsliModel::all();
+        $data=DataUji::all();
+        return view('datauji.datauji',compact('data'));
     }
 
     /**
@@ -42,81 +39,33 @@ class DataSetController extends Controller
      */
     public function store(Request $request)
     {
-   
-        $model= new DataSetModel;
-        $model->nama = $request->nama;
-        $model->pekerjaan = $request->pekerjaan;
-        $model->jumlahPengajuan = $request->jumlahPengajuan;
-        $model->jenisPembayaran= $request->jenisPembayaran;
-        $model->jangkaWaktu=$request->jangkaWaktu;
-        $model->metodePembayaran=$request->metodePembayaran;
-        $model->kapasitasBulanan=$request->kapasitasBulanan;
-        $model->keterangan=$request->keterangan;
+        $nama=$request->nama;
+        $pekerjaan=$request->pekerjaan;
+        $jumlahPengajuan=$request->jumlahPengajuan;
+        $jnsPembayaran=$request->jenisPembayaran;
+        $jangkaWaktu=$request->jangkaWaktu;
+        $metodePembayaran=$request->metodePembayaran;
+        $kapasitasBulanan=$request->kapasitasBulanan;
+
+        $model= new Datauji;
+        $model->nama=$nama;
+        $model->pekerjaan=$pekerjaan;
+        $model->jumlahPengajuan=$jumlahPengajuan;
+        $model->jenisPembayaran=$jnsPembayaran;
+        $model->jangkaWaktu=$jangkaWaktu;
+        $model->metodePembayaran=$metodePembayaran;
+        $model->kapasitasBulanan=$kapasitasBulanan;
         $model->save();
-        
-        return redirect()->back();
     }
 
-   public function ujidataset(){
+    public function ujidatapengajuan(){
     Perhitungan::truncate();
-    DataTraining::truncate();
-    DataTesting::truncate();
     $totalData= DB::table('dataset')->count();
     $jumlahPindah= (round(($totalData/100)*70));
       $data= DataSetModel::all();
       $dataatribut=DB::table('atribut')->get()->toArray();
-      
-    for ($i=0; $i<$jumlahPindah; $i++) { 
-       
-        $model= new DataTraining;
-        $model->nama= $data[$i]->nama;
-        $model->pekerjaan=$data[$i]->pekerjaan;;
-        $model->jumlahPengajuan=$data[$i]->jumlahPengajuan;
-        $model->jenisPembayaran=$data[$i]->jenisPembayaran;
-        $model->jangkaWaktu=$data[$i]->jangkaWaktu;
-        $model->metodePembayaran=$data[$i]->metodePembayaran;
-        $model->kapasitasBulanan=$data[$i]->kapasitasBulanan;
-        $model->keterangan=$data[$i]->keterangan;
-        $model->prediksi='coba lancar';
-        $model->save();
-    }
-    for ($i=$jumlahPindah; $i<$totalData; $i++) { 
-         
-        
-        $model= new DataTesting;
-        $model->nama= $data[$i]->nama;
-        $model->pekerjaan=$data[$i]->pekerjaan;
-        $model->jumlahPengajuan=$data[$i]->jumlahPengajuan;
-        $model->jenisPembayaran=$data[$i]->jenisPembayaran;
-        $model->jangkaWaktu=$data[$i]->jangkaWaktu;
-        $model->metodePembayaran=$data[$i]->metodePembayaran;
-        $model->kapasitasBulanan=$data[$i]->kapasitasBulanan;
-        $model->keterangan=$data[$i]->keterangan;
-        $model->prediksi='coba lancar';
-        $model->save();
-    }
-     foreach ($dataatribut as $key ) {
-        $atribut=$key->atribut;
-        $value=$key->value;
-        $hitunglancar=DB::table('datatraining')->where('keterangan','=','Lancar')->get()->count();
-        $hitungtidaklancar=DB::table('datatraining')->where('keterangan','=','Tidak Lancar')->get()->count();
-        $nilaiatributmacet=DB::table('datatraining')->where($atribut,'=',$value)->where('keterangan','=','Tidak Lancar') ->get()->count();
-        $nilaiatributlancar=DB::table('datatraining')->where($atribut,'=',$value)->where('keterangan','=','Lancar') ->get()->count();
-        $probtdklancar=(round($nilaiatributmacet/$hitungtidaklancar,5)) ;
-        $problancar=(round($nilaiatributlancar/$hitunglancar,5));
-        
-        $model= new Perhitungan;
-        $model->atribut=$atribut;
-        $model->nilai=$value;
-        $model->totalLancar=$nilaiatributlancar;
-        $model->totalMacet=$nilaiatributmacet;
-        $model->probMacet=$probtdklancar;
-        $model->probLancar=$problancar;
-        $model->save();
-
-     }
-     $datatraining=DataTraining::all();
-     foreach ($datatraining as $key ) {
+     $datauji=DataUji::all();
+     foreach ($datauji as $key ) {
 
     $id=$key->id;
     $nama=$key->nama;
@@ -168,7 +117,7 @@ class DataSetController extends Controller
     }
     
     
-    $model=DataTraining::find($id);
+    $model=datauji::find($id);
     $model->nama = $nama;
     $model->pekerjaan = $pekerjaan;
     $model->jumlahPengajuan = $jumlahPengajuan;
@@ -258,7 +207,8 @@ class DataSetController extends Controller
 
    }
 
-    public function show($id)
+
+    public function show(DataUji $dataUji)
     {
         //
     }
@@ -266,10 +216,10 @@ class DataSetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DataUji  $dataUji
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DataUji $dataUji)
     {
         //
     }
@@ -278,10 +228,10 @@ class DataSetController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\DataUji  $dataUji
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DataUji $dataUji)
     {
         //
     }
@@ -289,10 +239,10 @@ class DataSetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\DataUji  $dataUji
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DataUji $dataUji)
     {
         //
     }

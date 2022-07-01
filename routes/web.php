@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\DataAsliController;
 use App\Http\Controllers\DataSetController;
+use App\Http\Controllers\DataUjiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,3 +27,4 @@ Route::get('hapusduplikat',[DataAsliController::class,'hapusDuplikat']);
 Route::get('transform',[DataAsliController::class,'transform']);
 Route::resource('dataset',DataSetController::class);
 Route::get('ujidataset',[DataSetController::class,'ujidataset']);
+Route::resource('datauji',DataUjiController::class);
