@@ -19,6 +19,9 @@
 									<div class="form-group">
 										<label for="nama">Nama</label>
 										<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama">
+										@error('nama')
+										<div class="invalid-feedback">{{ $message }}</div>
+										@enderror
 									</div>
                                     <div class="form-group">
 										<label for="exampleFormControlSelect1">Pekerjaan</label>
@@ -29,9 +32,14 @@
 										</select>
 									</div>
                                     <div class="form-group">
-										<label for="jumlahPengajuan">Jumlah Pengajuan</label>
-										<input type="text" class="form-control" id="jumlahPengajuan" name="jumlahPengajuan" placeholder="Jumlah Pengajuan" onkeypress="return event.charCode >= 48 && event.charCode <=57">
-                                        <small id="emailHelp2" class="form-text text-muted">Hanya Menginputkan Angka</small>
+										<label for="exampleFormControlSelect1">Jumlah Pengajuan</label>
+										<select class="form-control" name="jumlahPengajuan" id="exampleFormControlSelect1">
+											<option value="<=5000000"><=5000000</option>
+											<option value="<=20000000"><=20000000</option>
+                                            <option value="<=30000000"><=30000000</option>
+                                            <option value="<=50000000"><=50000000</option>
+                                            <option value="<=300000000"><=300000000</option>
+										</select>
 									</div>
 									<div class="form-check">
 										<label>Jenis Pembayaran</label><br/>
@@ -44,9 +52,15 @@
 											<span class="form-radio-sign">Tempo</span>
 										</label>
 									</div>
-                                    <div class="form-group">
-										<label for="jangkaWaktu">Jangka Waktu</label>
-										<input type="text" class="form-control" name="jangkaWaktu" id="jangkaWaktu" placeholder="Dalam Bulan">
+                                   <div class="form-group">
+										<label for="exampleFormControlSelect1">JangkaWaktu</label>
+										<select class="form-control" name="jangkaWaktu" id="exampleFormControlSelect1">
+											<option value="3">3</option>
+											<option value="6">6</option>
+                                            <option value="12">12</option>
+                                            <option value="24">24</option>
+                                            <option value="36">36</option>
+										</select>
 									</div>
                                     <div class="form-check">
 										<label>Metode Pembayaran</label><br/>
@@ -60,21 +74,28 @@
 										</label>
 									</div>
                                      <div class="form-group">
-										<label for="pendapatan">Pendapatan</label>
-										<input type="text" class="form-control" id="pendapatan" name="pendapatan" placeholder="Pendapatan"  onFocus="startCalc();" onBlur="stopCalc();" >
+										<label for="pengeluaran">Pengeluaran</label>
+										<input type="text" class="form-control" id="pengeluaran" name="pengeluaran" placeholder="pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
 									</div>
                                      <div class="form-group">
-										<label for="konsumsi">Konsumsi</label>
-										<input type="text" class="form-control" id="konsumsi" name="konsumsi" placeholder="Pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
+										<label for="pendapatan">Pendapatan</label>
+										<input type="text" class="form-control" id="pendapatan" name="pendapatan" placeholder="Pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
 									</div>
                                     <div class="form-group">
-                                        <label for="pengeluaran">25%</label>
-										<input type="text" class="form-control" id="pengeluaran" name="persen" value="0.25" placeholder="Dalam Bulan"  onFocus="startCalc();" onBlur="stopCalc();" readonly>
+                                        <label for="persen">100%</label>
+										<input type="text" class="form-control" id="persen" name="persen" value="100" placeholder="Dalam Bulan"  onFocus="startCalc();" onBlur="stopCalc();" readonly><p>%</p>
 									</div>
                                      <div class="form-group">
 										<label for="kapasitasBulanan">Kapasitas Bulanan</label>
 										<input type="text" class="form-control" id="kapasitasBulanan"  name="kapasitasBulanan" readonly>
-                                        <small id="emailHelp2" class="form-text text-muted">25% dari Pendapatan - Pengeluaran</small>
+                                        <small id="emailHelp2" class="form-text text-muted">total persentase dari Pengeluaran/pendapatan</small>
+									</div>
+                                     <div class="form-group">
+										<label for="exampleFormControlSelect1">Keterangan</label>
+										<select class="form-control" name="keterangan" id="exampleFormControlSelect1">
+											<option value="Lancar">Lancar</option>
+											<option value="Tidak Lancar">Tidak Lancar</option>
+										</select>
 									</div>
 								</div>
 							</div>     

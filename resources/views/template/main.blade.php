@@ -55,8 +55,8 @@
           <span>Data Training & Data Testing</span>
         </a>
       </li>
-      <li class="nav-item Request::path()== 'pemodelan'? 'active' : '' ">
-        <a class="nav-link" href="{{ url('dataset') }}">
+      <li class="nav-item {{ Request::path()== 'pemodelan'? 'active' : ''  }}">
+        <a class="nav-link" href="{{ url('pemodelan') }}">
           <i class="fas fa-fw fa-palette"></i>
           <span>Pemodelan</span>
         </a>
@@ -201,10 +201,10 @@
 function startCalc(){
 interval = setInterval("calc()",1);}
 function calc(){
-one = document.autoSumForm.pendapatan.value;
-two = document.autoSumForm.konsumsi.value; 
+one = document.autoSumForm.pengeluaran.value;
+two = document.autoSumForm.pendapatan.value; 
 three = document.autoSumForm.persen.value; 
-document.autoSumForm.kapasitasBulanan.value = ((one * 1) - (two * 1)) * (three * 1);}
+document.autoSumForm.kapasitasBulanan.value = ((one * 1) / (two * 1)) * (three * 1);}
 function stopCalc(){
 clearInterval(interval);}
 </script>

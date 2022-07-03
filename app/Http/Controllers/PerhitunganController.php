@@ -14,7 +14,8 @@ class PerhitunganController extends Controller
      */
     public function index()
     {
-        //
+        $data= Perhitungan::all();
+        return view('pemodelan.pemodelan',compact('data'));
     }
 
     /**

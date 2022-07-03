@@ -74,21 +74,21 @@
 										</label>
 									</div>
                                      <div class="form-group">
-										<label for="pendapatan">Pendapatan</label>
-										<input type="text" class="form-control" id="pendapatan" name="pendapatan" placeholder="Pendapatan"  onFocus="startCalc();" onBlur="stopCalc();" >
+										<label for="pengeluaran">Pengeluaran</label>
+										<input type="text" class="form-control" id="pengeluaran" name="pengeluaran" placeholder="pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
 									</div>
                                      <div class="form-group">
-										<label for="konsumsi">Konsumsi</label>
-										<input type="text" class="form-control" id="konsumsi" name="konsumsi" placeholder="Pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
+										<label for="pendapatan">Pendapatan</label>
+										<input type="text" class="form-control" id="pendapatan" name="pendapatan" placeholder="Pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
 									</div>
                                     <div class="form-group">
-                                        <label for="pengeluaran">25%</label>
-										<input type="text" class="form-control" id="pengeluaran" name="persen" value="0.25" placeholder="Dalam Bulan"  onFocus="startCalc();" onBlur="stopCalc();" readonly>
+                                        <label for="persen">100%</label>
+										<input type="text" class="form-control" id="persen" name="persen" value="100" placeholder="Dalam Bulan"  onFocus="startCalc();" onBlur="stopCalc();" readonly><p>%</p>
 									</div>
                                      <div class="form-group">
 										<label for="kapasitasBulanan">Kapasitas Bulanan</label>
 										<input type="text" class="form-control" id="kapasitasBulanan"  name="kapasitasBulanan" readonly>
-                                        <small id="emailHelp2" class="form-text text-muted">25% dari Pendapatan - Pengeluaran</small>
+                                        <small id="emailHelp2" class="form-text text-muted">total persentase dari Pengeluaran/pendapatan</small>
 									</div>
                                      <div class="form-group">
 										<label for="exampleFormControlSelect1">Keterangan</label>

@@ -4,6 +4,7 @@
 use App\Http\Controllers\DataAsliController;
 use App\Http\Controllers\DataSetController;
 use App\Http\Controllers\DataUjiController;
+use App\Http\Controllers\PerhitunganController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,3 +29,4 @@ Route::get('transform',[DataAsliController::class,'transform']);
 Route::resource('dataset',DataSetController::class);
 Route::get('ujidataset',[DataSetController::class,'ujidataset']);
 Route::resource('datauji',DataUjiController::class);
+Route::resource('pemodelan',PerhitunganController::class);
