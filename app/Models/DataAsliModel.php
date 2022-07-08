@@ -17,7 +17,8 @@ class DataAsliModel extends Model
         'jenisPembayaran',
         'jangkaWaktu',
         'metodePembayaran',
-        'kapasitasBulanan',
+        'pendapatan',
+        'pengeluaran',
         'keterangan',
         
     ];

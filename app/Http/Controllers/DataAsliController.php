@@ -46,7 +46,8 @@ class DataAsliController extends Controller
         $model->jenisPembayaran= $request->jenisPembayaran;
         $model->jangkaWaktu=$request->jangkaWaktu;
         $model->metodePembayaran=$request->metodePembayaran;
-        $model->kapasitasBulanan=$request->kapasitasBulanan;
+        $model->pendapatan->$request->pendapatan;
+        $model->pengeluaran->$request->pengeluaran;
         $model->save();
         return redirect()->back();
     }
@@ -70,49 +71,9 @@ class DataAsliController extends Controller
         //
     }
 
-    // public function hapusDuplikat(){
-    //     $jumlahduplikat=1;
-    //     $data=DataAsliModel::all();
-    //     foreach ($data as $key ) {
-    //         $id=$key->id;
-    //         $nama=$key->nama;
-    //         $pekerjaan=$key->pekerjaan;
-    //         $jumlahPengajuan=$key->jumlahPengajuan;
-    //         $jenisPembayaran=$key->jenisPembayaran;
-    //         $jangkaWaktu=$key->jangkaWaktu;
-    //         $metodePembayaran=$key->metodePembayaran;
-    //         $kapasitasBulanan=$key->kapasitasBulanan;
-    //         $keterangan=$key->keterangan;
-
-    //         $flag=DB::table('data_asli')
-    //         ->where('nama','=',$nama)
-    //         ->where('pekerjaan','=',$pekerjaan)
-    //         ->where('jumlahPengajuan','=',$jumlahPengajuan)
-    //         ->where('jenisPembayaran','=',$jenisPembayaran)
-    //         ->where('jangkaWaktu','=',$jangkaWaktu)
-    //         ->where('metodePembayaran','=',$metodePembayaran)
-    //         ->where('kapasitasBulanan','=',$kapasitasBulanan)
-    //         ->where('keterangan','=',$keterangan)
-            
-    //         ->get();
-
-    //         if ($flag->count()>1) {
-
-    //            $hapus=DataAsliModel::find($id);
-    //            $hapus->delete();
-    //            $jumlahduplikat++;
-    //         }
-           
-    //     }
-    //   return redirect()->back();
-    // }
-
-
-    //preprosessing data hapus duplikat dan transformasi data
-    public function transform(){
-
-    $data=DataAsliModel::all();
-       $jumlahduplikat=1;
+    public function hapusDuplikat(){
+        $jumlahduplikat=1;
+        $data=DataAsliModel::all();
         foreach ($data as $key ) {
             $id=$key->id;
             $nama=$key->nama;
@@ -124,14 +85,68 @@ class DataAsliController extends Controller
             $kapasitasBulanan=$key->kapasitasBulanan;
             $keterangan=$key->keterangan;
 
+            $flag=DB::table('data_asli')
+            ->where('nama','=',$nama)
+            ->where('pekerjaan','=',$pekerjaan)
+            ->where('jumlahPengajuan','=',$jumlahPengajuan)
+            ->where('jenisPembayaran','=',$jenisPembayaran)
+            ->where('jangkaWaktu','=',$jangkaWaktu)
+            ->where('metodePembayaran','=',$metodePembayaran)
+            ->where('kapasitasBulanan','=',$kapasitasBulanan)
+            ->where('keterangan','=',$keterangan)
+            
+            ->get();
 
+            if ($flag->count()>1) {
+
+               $hapus=DataAsliModel::find($id);
+               $hapus->delete();
+               $jumlahduplikat++;
+            }
+           
+        }
+      return redirect()->back();
+    }
+
+
+    //preprosessing data hapus duplikat dan transformasi data
+    public function transform(){
+
+    $data=DataAsliModel::all();
+        foreach ($data as $key ) {
+            $id=$key->id;
+            $nama=$key->nama;
+            $pekerjaan=$key->pekerjaan;
+            $jumlahPengajuan=$key->jumlahPengajuan;
+            $jenisPembayaran=$key->jenisPembayaran;
+            $jangkaWaktu=$key->jangkaWaktu;
+            $metodePembayaran=$key->metodePembayaran;
+            $pendapatan=$key->pendapatan;
+            $pengeluarana=$key->pengeluaran;
+            $keterangan=$key->keterangan;
+
+
+        if ($jangkaWaktu<=3) {
+            $jangkaWaktu='3';
+          
+        }elseif ($jangkaWaktu<=6) {
+            $jangkaWaktu='6';
+        }elseif ($jangkaWaktu<=12) {
+            $jangkaWaktu='12';
+        }elseif ($jangkaWaktu<=24) {
+
+            $jangkaWaktu='24';
+        }else {
+            $jangkaWaktu='36';
+        }
+        //jumlah pengajuan
         if ($jumlahPengajuan<=5000000) {
             $jumlahPengajuan='<=5000000';
         }elseif ($jumlahPengajuan<=20000000) {
 
             $jumlahPengajuan='<=20000000';
         }elseif ($jumlahPengajuan<=30000000) {
-            $jumlahPengajuan='=30000000';
+            $jumlahPengajuan='<=30000000';
         }elseif ($jumlahPengajuan<=50000000) {
             $jumlahPengajuan='<=50000000';
           
@@ -139,7 +154,20 @@ class DataAsliController extends Controller
             $jumlahPengajuan='<=300000000';
         }
         
-           
+     
+        //kapasitasbulanan
+        $totalbulanan=round(($pengeluarana/$pendapatan)*100);
+       
+        if ($totalbulanan<=25) {
+
+            $kapasitasBulanan='Aman';
+        }elseif ($totalbulanan<=40) {
+            $kapasitasBulanan='Dalam Pertimbangan';
+        }else {
+            $kapasitasBulanan='Tidak Aman';
+        }
+
+        // dd($jangkaWaktu);
         $model=new DataSetModel;
         $model->nama=$nama;
         $model->pekerjaan=$pekerjaan;
@@ -154,8 +182,9 @@ class DataAsliController extends Controller
             
          
         }
+         
+        $jumlahduplikat=1;
          $data=DataSetModel::all();
-       $jumlahduplikat=1;
         foreach ($data as $key ) {
             $id=$key->id;
             $nama=$key->nama;
@@ -167,7 +196,7 @@ class DataAsliController extends Controller
             $kapasitasBulanan=$key->kapasitasBulanan;
             $keterangan=$key->keterangan;
 
-        $flag=DB::table('dataset')
+            $flag=DB::table('dataset')
             ->where('nama','=',$nama)
             ->where('pekerjaan','=',$pekerjaan)
             ->where('jumlahPengajuan','=',$jumlahPengajuan)
@@ -179,13 +208,14 @@ class DataAsliController extends Controller
             
             ->get();
 
-        if ($flag->count()>1) 
+            if ($flag->count()>1) {
 
                $hapus=DataSetModel::find($id);
                $hapus->delete();
                $jumlahduplikat++;
-        
-    }
+            }
+           
+        }
         
 
 

@@ -49,8 +49,8 @@
           <span>Data Set</span>
         </a>
       </li>
-      <li class="nav-item Request::path()== 'datatraining'? 'active' : '' ">
-        <a class="nav-link" href="ui-colors.html">
+      <li class="nav-item {{ Request::path()== 'datatraining'? 'active' : ''  }}">
+        <a class="nav-link" href="{{ url('datatraining') }}">
           <i class="fas fa-fw fa-palette"></i>
           <span>Data Training & Data Testing</span>
         </a>
@@ -144,7 +144,7 @@
             <div class="container my-auto">
             <div class="copyright text-center my-auto">
                 <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-                <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
+                <b>Bagus Patrio</b>
                 </span>
             </div>
             </div>
@@ -186,12 +186,12 @@
                 $('#dataTableHover').DataTable({
                    
                    
-                    dom: "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>"+
-                        "<'row'<'col-md-12'tr>>"+
-                        "<'row'<'col-md-5'i><'col-md-7'p>>",
-                    buttons: [
-                        , 'csv', 'excel', 'pdf', 'print','colvis'
-                    ],
+                    // dom: "<'row'<'col-md-3'l><'col-md-5'B><'col-md-4'f>>"+
+                    //     "<'row'<'col-md-12'tr>>"+
+                    //     "<'row'<'col-md-5'i><'col-md-7'p>>",
+                    // buttons: [
+                    //     , 'csv', 'excel', 'pdf', 'print','colvis'
+                    // ],
                     
                 })
             });

@@ -9,7 +9,7 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center">
                   {{-- <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6> --}}
                   <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button>
-                  <button type="button" class="btn-info"data-toggle="modal" data-target="#importdata"id="#myBtn">Import Data</button>
+                  {{-- <button type="button" class="btn-info"data-toggle="modal" data-target="#importdata"id="#myBtn">Import Data</button> --}}
                   {{-- <a href="hapusduplikat" class=" btn btn-danger ml-3 ">Hapus Duplikat</a> --}}
                   <a href="/ujidataset" class=" btn btn-danger ml-3 ">Uji Data Set</a>
                   

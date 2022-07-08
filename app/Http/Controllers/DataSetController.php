@@ -146,15 +146,15 @@ class DataSetController extends Controller
     
     //tidak lancar
     $nilaipekerjaantdklancar=DB::table('perhitungan')->where('nilai','=',$pekerjaan)->get()->toArray();
-    $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probLancar;
+    $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probMacet;
     $nilaijmlpengajuantdklancar=DB::table('perhitungan')->where('nilai','=',$jumlahPengajuan)->get()->toArray();
-    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probLancar;    
+    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probMacet;    
     $nilaijnspembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$jenisPembayaran)->get()->toArray();
-    $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probLancar;
+    $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probMacet;
     $nilaijgkwaktutdklancar=DB::table('perhitungan')->where('nilai','=',$jangkaWaktu)->get()->toArray();
-    $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probLancar;
+    $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probMacet;
     $nilaimtdpembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
-    $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probLancar;
+    $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probMacet;
     // $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
     // $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
 
@@ -167,7 +167,6 @@ class DataSetController extends Controller
         $prediksi="Tidak Lancar";
     }
     
-    
     $model=DataTraining::find($id);
     $model->nama = $nama;
     $model->pekerjaan = $pekerjaan;
@@ -179,7 +178,7 @@ class DataSetController extends Controller
     $model->keterangan=$keterangan;
     $model->prediksi= $prediksi;
     $model->save();
-    echo "<b>$tidaklancar<b><br>$lancar<br> ";
+    
      }
      $datatesting=DataTesting::all();
      foreach ($datatesting as $key ) {
@@ -212,28 +211,28 @@ class DataSetController extends Controller
     
     //tidak lancar
     $nilaipekerjaantdklancar=DB::table('perhitungan')->where('nilai','=',$pekerjaan)->get()->toArray();
-    $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probLancar;
+    $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probMacet;
     $nilaijmlpengajuantdklancar=DB::table('perhitungan')->where('nilai','=',$jumlahPengajuan)->get()->toArray();
-    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probLancar;    
+    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probMacet;    
     $nilaijnspembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$jenisPembayaran)->get()->toArray();
-    $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probLancar;
+    $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probMacet;
     $nilaijgkwaktutdklancar=DB::table('perhitungan')->where('nilai','=',$jangkaWaktu)->get()->toArray();
-    $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probLancar;
+    $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probMacet;
     $nilaimtdpembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
-    $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probLancar;
+    $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probMacet;
     // $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
     // $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
 
     $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar,5)) ;
 
 
-     if ($lancar>$tidaklancar) {
+     if ($lancar>=$tidaklancar) {
         $prediksi="Lancar";
     }else {
         $prediksi="Tidak Lancar";
     }
     
-    
+  
     $model=DataTesting::find($id);
     $model->nama = $nama;
     $model->pekerjaan = $pekerjaan;
@@ -245,16 +244,10 @@ class DataSetController extends Controller
     $model->keterangan=$keterangan;
     $model->prediksi= $prediksi;
     $model->save();
-    echo "$prediksi<br>$lancar<br> ";
+    
      }
-     
-   
     
    
-
-   
-   
-  
 
    }
 

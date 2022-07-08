@@ -1,12 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
+use App\Models\Perhitungan;
+use App\Models\DataAsliModel;
+use App\Models\DataSetModel;
 use App\Models\DataTraining;
 use App\Models\DataTesting;
-use Illuminate\Http\Request;
+use App\Models\DataUji;
+use DB;
 
-class DataTrainingController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +18,12 @@ class DataTrainingController extends Controller
      */
     public function index()
     {
-        $training=DataTraining::all();
-        $testing=DataTesting::all();
-        return view('datatraining',compact('training','testing'));
+        $data=DataTesting::all()->count();
+        $datatesting=DB::table('datatesting')->limit(10)->where('prediksi','=','Lancar')->get();
+        $training=DataTraining::all()->count();
+        $layak=DataTesting::all()->where('keterangan','=','Lancar')->count();
+        $macet=DataTesting::all()->where('keterangan','=','Tidak Lancar')->count();
+        return view('dashboard',compact('data','training','layak','macet','datatesting'));
     }
 
     /**
@@ -44,10 +50,10 @@ class DataTrainingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DataTraining  $dataTraining
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(DataTraining $dataTraining)
+    public function show($id)
     {
         //
     }
@@ -55,10 +61,10 @@ class DataTrainingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\DataTraining  $dataTraining
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataTraining $dataTraining)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +73,10 @@ class DataTrainingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DataTraining  $dataTraining
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataTraining $dataTraining)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +84,10 @@ class DataTrainingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\DataTraining  $dataTraining
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataTraining $dataTraining)
+    public function destroy($id)
     {
         //
     }

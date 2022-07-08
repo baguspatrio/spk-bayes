@@ -8,7 +8,7 @@
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center">
                   {{-- <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6> --}}
-                  <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button>
+                  {{-- <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button> --}}
                   <button type="button" class="btn-info"data-toggle="modal" data-target="#importdata"id="#myBtn">Import Data</button>
                   {{-- <a href="hapusduplikat" class=" btn btn-danger ml-3 ">Hapus Duplikat</a> --}}
                   <a href="transform" class=" btn btn-danger ml-3 ">Preprosessing Data</a>
@@ -28,7 +28,8 @@
                         <th>Jenis Pembayaran</th>
                         <th>Jangka Waktu</th>
                         <th>Metode Pembayaran</th>
-                        <th>Kapasitas Bulanan</th>
+                        <th>Pendapatan</th>
+                        <th>Pengeluaran</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
@@ -41,7 +42,8 @@
                         <th>Jenis Pembayaran</th>
                         <th>Jangka Waktu</th>
                         <th>Metode Pembayaran</th>
-                        <th>Kapasitas Bulanan</th>
+                        <th>Pendapatan</th>
+                        <th>pengeluaran</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
@@ -55,7 +57,8 @@
                         <td>{{ $key->jenisPembayaran }}</td>
                         <td>{{ $key->jangkaWaktu}}</td>
                         <td>{{ $key->metodePembayaran}}</td>
-                        <td>{{ $key->kapasitasBulanan }}</td>
+                        <td>{{ $key->pendapatan }}</td>
+                        <td>{{ $key->pengeluaran }}</td>
                         <td>{{ $key->keterangan }}</td>
                         <td>
                           <button type="button" class="btn-primary m-3" data-toggle="modal" data-target="#edit{{ $key->id }}"id="#myBtn">Edit</button>
