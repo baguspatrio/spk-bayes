@@ -2,17 +2,17 @@
 @section('konten')
 @include('dataasli.modal')
 @include('datauji.modaltambahdata')
-@include('datauji.modaledit')
 {{-- @include('dataset.modaledit'); --}}
     <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center">
                   {{-- <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6> --}}
-                  <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button>
+                  {{-- <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button>
                   <button type="button" class="btn-info"data-toggle="modal" data-target="#importdata"id="#myBtn">Import Data</button>
                   {{-- <a href="hapusduplikat" class=" btn btn-danger ml-3 ">Hapus Duplikat</a> --}}
-                  <a href="/ujidata" class=" btn btn-danger ml-3 ">Uji Data </a>
+                  {{-- <a href="/ujidata" class=" btn btn-danger ml-3 ">Uji Data </a> --}} 
+                  <h3>Tabel Hasil Pengujian</h3>
                   
                 </div>
                 <div class="table-responsive p-3">
@@ -25,6 +25,8 @@
                         <th>Jenis Pembayaran</th>
                         <th>Jangka Waktu (bulan)</th>
                         <th>Metode Pembayaran</th>
+                        <th>Kapasitas Bulanan</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -36,6 +38,8 @@
                         <th>Jenis Pembayaran</th>
                         <th>Jangka Waktu</th>
                         <th>Metode Pembayaran</th>
+                        <th>Kapasitas Bulanan</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                       </tr>
                     </tfoot>
@@ -48,9 +52,11 @@
                         <td>{{ $key->jenisPembayaran }}</td>
                         <td>{{ $key->jangkaWaktu}}</td>
                         <td>{{ $key->metodePembayaran}}</td>
+                        <td>{{ $key->kapasitasBulanan }}</td>
+                        <td>{{ $key->keterangan }}</td>
                         <td>
                           <button type="button" class="btn-primary m-3" data-toggle="modal" data-target="#edit{{ $key->id }}"id="#myBtn">Edit</button>
-                          <form action="{{ url('dataasli/'.$key->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')" >
+                          <form action="{{ url('hasiluji/'.$key->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus data ini?')" >
                           @csrf
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Hapus</button>

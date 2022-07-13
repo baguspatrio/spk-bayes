@@ -29,23 +29,21 @@
 											<option value="PNS">PNS</option>
 											<option value="Karyawan">Karyawan</option>
 											<option value="Pedagang">Pedagang</option>
+											<option value="Guru/Dosen">Guru/Dosen</option>
+											<option value="TNI/Polri">TNI/Polri</option>
+											<option value="Jasa">Jasa</option>
 										</select>
 									</div>
                                     <div class="form-group">
-										<label for="exampleFormControlSelect1">Jumlah Pengajuan</label>
-										<select class="form-control" name="jumlahPengajuan" id="exampleFormControlSelect1">
-											<option value="<=5000000"><=5000000</option>
-											<option value="<=20000000"><=20000000</option>
-                                            <option value="<=30000000"><=30000000</option>
-                                            <option value="<=50000000"><=50000000</option>
-                                            <option value="<=300000000"><=300000000</option>
-										</select>
+										<label for="jumlahPengajuan">Jumlah Pengajuan</label>
+										<input type="text" name="jumlahPengajuan"onkeypress="return event.charCode >= 48 && event.charCode <=57" class="form-control" id="jumlahPengajuan">
+										
 									</div>
 									<div class="form-check">
 										<label>Jenis Pembayaran</label><br/>
 										<label class="form-radio-label">
 											<input class="form-radio-input" type="radio" name="jenisPembayaran" value="Angsur"  checked="">
-											<span class="form-radio-sign">Angsur</span>
+											<span class="form-radio-sign">Angsuran</span>
 										</label>
 										<label class="form-radio-label ml-3">
 											<input class="form-radio-input" type="radio" name="jenisPembayaran" value="Tempo">
@@ -73,22 +71,23 @@
 											<span class="form-radio-sign">Kantor KSPPS BMT Al Ikhwan </span>
 										</label>
 									</div>
+									<div class="form-group">
+										<label for="pendapatan">Pendapatan</label>
+										<input type="text" class="form-control" id="pendapatan" name="pendapatan" placeholder="Pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
+									</div>
                                      <div class="form-group">
 										<label for="pengeluaran">Pengeluaran</label>
 										<input type="text" class="form-control" id="pengeluaran" name="pengeluaran" placeholder="pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
 									</div>
-                                     <div class="form-group">
-										<label for="pendapatan">Pendapatan</label>
-										<input type="text" class="form-control" id="pendapatan" name="pendapatan" placeholder="Pengeluaran"  onFocus="startCalc();" onBlur="stopCalc();" >
-									</div>
+                                     
                                     <div class="form-group">
-                                        <label for="persen">100%</label>
-										<input type="text" class="form-control" id="persen" name="persen" value="100" placeholder="Dalam Bulan"  onFocus="startCalc();" onBlur="stopCalc();" readonly><p>%</p>
+                                        <label for="persen">25%</label>
+										<input type="hidden" class="form-control" id="persen" name="persen" value="0.25" placeholder="Dalam Bulan"  onFocus="startCalc();" onBlur="stopCalc();" readonly>
 									</div>
                                      <div class="form-group">
-										<label for="kapasitasBulanan">Kapasitas Bulanan</label>
+										<label for="kapasitasBulanan">Kapasitas Bulanan (%)</label>
 										<input type="text" class="form-control" id="kapasitasBulanan"  name="kapasitasBulanan" readonly>
-                                        <small id="emailHelp2" class="form-text text-muted">total persentase dari Pengeluaran/pendapatan</small>
+                                        <small id="emailHelp2" class="form-text text-muted">(total pendapatan-total pengeluaran)*25%</small>
 									</div>
                                      <div class="form-group">
 										<label for="exampleFormControlSelect1">Keterangan</label>

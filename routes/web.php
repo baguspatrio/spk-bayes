@@ -7,6 +7,7 @@ use App\Http\Controllers\DataUjiController;
 use App\Http\Controllers\PerhitunganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataTrainingController;
+use App\Http\Controllers\HasilUjiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +29,8 @@ Route::get('hapusduplikat',[DataAsliController::class,'hapusDuplikat']);
 Route::get('transform',[DataAsliController::class,'transform']);
 Route::resource('dataset',DataSetController::class);
 Route::get('ujidataset',[DataSetController::class,'ujidataset']);
-Route::resource('datauji',DataUjiController::class);
 Route::resource('pemodelan',PerhitunganController::class);
 Route::resource('datatraining',DataTrainingController::class);
+Route::resource('datauji',DataUjiController::class);
+Route::get('ujidata',[DataUjiController::class,'ujidatapengajuan']);
+Route::resource('hasiluji',HasilUjiController::class);

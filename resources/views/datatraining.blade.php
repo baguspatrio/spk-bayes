@@ -14,7 +14,7 @@
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>Nama</th>
+                        {{-- <th>Nama</th> --}}
                         <th>Pekerjaan</th>
                         <th>Jumlah Pengajuan</th>
                         <th>Jenis Pembayaran</th>
@@ -27,7 +27,7 @@
                     </thead>
                     <tfoot>
                       <tr>
-                         <th>Nama</th>
+                         {{-- <th>Nama</th> --}}
                         <th>Pekerjaan</th>
                         <th>Jumlah Pengajuan</th>
                         <th>Jenis Pembayaran</th>
@@ -41,7 +41,7 @@
                     <tbody>
                      @foreach ($training as $key)
                       <tr>
-                        <td>{{ $key->nama}}</td>
+                        {{-- <td>{{ $key->nama}}</td> --}}
                         <td>{{ $key->pekerjaan }}</td>
                         <td>{{ $key->jumlahPengajuan }}</td>
                         <td>{{ $key->jenisPembayaran }}</td>
@@ -69,7 +69,7 @@
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>Nama</th>
+                        {{-- <th>Nama</th> --}}
                         <th>Pekerjaan</th>
                         <th>Jumlah Pengajuan</th>
                         <th>Jenis Pembayaran</th>
@@ -82,7 +82,7 @@
                     </thead>
                     <tfoot>
                       <tr>
-                         <th>Nama</th>
+                         {{-- <th>Nama</th> --}}
                         <th>Pekerjaan</th>
                         <th>Jumlah Pengajuan</th>
                         <th>Jenis Pembayaran</th>
@@ -96,7 +96,7 @@
                     <tbody>
                      @foreach ($testing as $key)
                       <tr>
-                        <td>{{ $key->nama}}</td>
+                        {{-- <td>{{ $key->nama}}</td> --}}
                         <td>{{ $key->pekerjaan }}</td>
                         <td>{{ $key->jumlahPengajuan }}</td>
                         <td>{{ $key->jenisPembayaran }}</td>

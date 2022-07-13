@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerhitungan extends Migration
+class Cratetableperhitungan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePerhitungan extends Migration
      */
     public function up()
     {
-        Schema::create('perhitungan', function (Blueprint $table) {
+       Schema::create('perhitungan', function (Blueprint $table) {
             $table->id();
             $table->string('atribut');
             $table->string('nilai');
@@ -32,6 +32,6 @@ class CreatePerhitungan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perhitungan');
+        //
     }
 }

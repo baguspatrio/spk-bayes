@@ -204,26 +204,26 @@ class DataSetController extends Controller
     $jgkwaktulancar=$nilaijgkwaktulancar['0']->probLancar;
     $nilaimtdpembayaranlancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
     $mtdpembayaranlancar=$nilaimtdpembayaranlancar['0']->probLancar;
-    // $nilaikapasitasBulananlancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
-    // $kpsblnl=$nilaikapasitasBulananlancar['0']->probLancar;
+    $nilaikapasitasBulananlancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
+    $kapasitasBulananlancar=$nilaikapasitasBulananlancar['0']->probLancar;
     
-    $lancar=(round($pekerjaanlancar*$jmlpengajuanlancar*$jnsPembayaranlancar*$jgkwaktulancar*$mtdpembayaranlancar,5)) ;
+    $lancar=(round($pekerjaanlancar*$jmlpengajuanlancar*$jnsPembayaranlancar*$jgkwaktulancar*$mtdpembayaranlancar*$kapasitasBulananlancar,5)) ;
     
     //tidak lancar
     $nilaipekerjaantdklancar=DB::table('perhitungan')->where('nilai','=',$pekerjaan)->get()->toArray();
     $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probMacet;
     $nilaijmlpengajuantdklancar=DB::table('perhitungan')->where('nilai','=',$jumlahPengajuan)->get()->toArray();
-    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probMacet;    
+    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probMacet;  
     $nilaijnspembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$jenisPembayaran)->get()->toArray();
     $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probMacet;
     $nilaijgkwaktutdklancar=DB::table('perhitungan')->where('nilai','=',$jangkaWaktu)->get()->toArray();
     $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probMacet;
     $nilaimtdpembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
     $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probMacet;
-    // $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
-    // $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
+    $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
+    $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
 
-    $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar,5)) ;
+    $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar*$kapasitasbulanantidklancar,5)) ;
 
 
      if ($lancar>=$tidaklancar) {
@@ -276,7 +276,7 @@ class DataSetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

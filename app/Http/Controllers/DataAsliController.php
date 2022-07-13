@@ -122,7 +122,7 @@ class DataAsliController extends Controller
             $jangkaWaktu=$key->jangkaWaktu;
             $metodePembayaran=$key->metodePembayaran;
             $pendapatan=$key->pendapatan;
-            $pengeluarana=$key->pengeluaran;
+            $pengeluaran=$key->pengeluaran;
             $keterangan=$key->keterangan;
 
 
@@ -136,9 +136,169 @@ class DataAsliController extends Controller
         }elseif ($jangkaWaktu<=24) {
 
             $jangkaWaktu='24';
-        }else {
-            $jangkaWaktu='36';
+        }elseif ($jangkaWaktu<=36) {
+            $jangkaWaktu='36';}
+        else {
+            $jangkaWaktu='48';
         }
+
+         //kapasitasBulanan
+        $waktubayar=$jangkaWaktu;
+        $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+        $margin=round(($waktubayar*0.02)+1,2);
+        $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+    
+        if ($waktubayar==3 & $totalbulanan<$kemampuan) {
+            $kapasitasBulanan='Aman 3 bulan';
+        } elseif ($waktubayar==3 & $totalbulanan>$kemampuan) {
+          $waktubayar=6;
+            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+            $margin=round(($waktubayar*0.02)+1,2);
+            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+            if ($waktubayar==6 & $totalbulanan<$kemampuan) {
+            $kapasitasBulanan='Aman 6 bulan';
+            }elseif ($waktubayar==6 & $totalbulanan>$kemampuan) {
+            $waktubayar=12;
+                $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                $margin=round(($waktubayar*0.02)+1,2);
+                $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                if ($waktubayar==12 & $totalbulanan<$kemampuan) {
+                    $kapasitasBulanan='Aman 12 bulan';
+                }elseif ($waktubayar==12 & $totalbulanan>$kemampuan) {
+                    $waktubayar=24;
+                    $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                    $margin=round(($waktubayar*0.02)+1,2);
+                    $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                    if ($waktubayar==24 & $totalbulanan<$kemampuan) {
+                        $kapasitasBulanan='Aman 24 bulan';
+                    }elseif ($waktubayar==24 & $totalbulanan>$kemampuan) {
+                        $waktubayar=36;
+                        $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                        $margin=round(($waktubayar*0.02)+1,2);
+                        $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                        if ($waktubayar==36 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 36 bulan';
+                        }elseif ($waktubayar==36 & $totalbulanan>$kemampuan) {
+                            $waktubayar=48;
+                            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                            $margin=round(($waktubayar*0.02)+1,2);
+                            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                            if ($waktubayar==48 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 48 bulan';
+                            }elseif ($waktubayar==48 & $totalbulanan>$kemampuan) {
+                               $kapasitasBulanan="Tidak Aman";
+                            }
+                        }
+                        
+                    }
+                }
+        }
+        }elseif ($waktubayar==6 & $totalbulanan<$kemampuan) {
+            $kapasitasBulanan='Aman 6 bulan';
+        }elseif ($waktubayar==6 & $totalbulanan>$kemampuan) {
+            $waktubayar=12;
+            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+            $margin=round(($waktubayar*0.02)+1,2);
+            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                if ($waktubayar==12 & $totalbulanan<$kemampuan) {
+                    $kapasitasBulanan='Aman 12 bulan';
+                }elseif ($waktubayar==12 & $totalbulanan>$kemampuan) {
+                    $waktubayar=24;
+                    $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                    $margin=round(($waktubayar*0.02)+1,2);
+                    $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                    if ($waktubayar==24 & $totalbulanan<$kemampuan) {
+                        $kapasitasBulanan='Aman 24 bulan';
+                    }elseif ($waktubayar==24 & $totalbulanan>$kemampuan) {
+                        $waktubayar=36;
+                        $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                        $margin=round(($waktubayar*0.02)+1,2);
+                        $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                        if ($waktubayar==36 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 36 bulan';
+                        }elseif ($waktubayar==36 & $totalbulanan>$kemampuan) {
+                            $waktubayar=48;
+                            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                            $margin=round(($waktubayar*0.02)+1,2);
+                            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                            if ($waktubayar==48 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 48 bulan';
+                            }elseif ($waktubayar==48 & $totalbulanan>$kemampuan) {
+                               $kapasitasBulanan="Tidak Aman";
+                            }
+                        }
+                        
+                    }
+                }
+            
+        }elseif ($waktubayar==12 & $totalbulanan>$kemampuan) {
+            $waktubayar=24;
+            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                    $margin=round(($waktubayar*0.02)+1,2);
+                    $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                    if ($waktubayar==24 & $totalbulanan<$kemampuan) {
+                        $kapasitasBulanan='Aman 24 bulan';
+                    }elseif ($waktubayar==24 & $totalbulanan>$kemampuan) {
+                        $waktubayar=36;
+                        $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                        $margin=round(($waktubayar*0.02)+1,2);
+                        $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                        if ($waktubayar==36 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 36 bulan';
+                        }elseif ($waktubayar==36 & $totalbulanan>$kemampuan) {
+                            $waktubayar=48;
+                            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                            $margin=round(($waktubayar*0.02)+1,2);
+                            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                            if ($waktubayar==48 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 48 bulan';
+                            }elseif ($waktubayar==48 & $totalbulanan>$kemampuan) {
+                               $kapasitasBulanan="Tidak Aman";
+                            }
+                        }
+                        
+                    }
+
+        }elseif ($waktubayar==24 & $totalbulanan<$kemampuan) {
+            $kapasitasBulanan='Aman 24 bulan';
+        }elseif ($waktubayar==24 & $totalbulanan>$kemampuan) {
+            $waktubayar=36;
+            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+            $margin=round(($waktubayar*0.02)+1,2);
+            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                 if ($waktubayar==36 & $totalbulanan<$kemampuan) {
+                    $kapasitasBulanan='Aman 36 bulan';
+                    }elseif ($waktubayar==36 & $totalbulanan>$kemampuan) {
+                            $waktubayar=48;
+                            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+                            $margin=round(($waktubayar*0.02)+1,2);
+                            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                            if ($waktubayar==48 & $totalbulanan<$kemampuan) {
+                            $kapasitasBulanan='Aman 48 bulan';
+                            }elseif ($waktubayar==48 & $totalbulanan>$kemampuan) {
+                               $kapasitasBulanan="Tidak Aman";
+                            }
+                    }       
+        }elseif ($waktubayar==36 & $totalbulanan<$kemampuan) {
+            $kapasitasBulanan='Aman 36 bulan';
+        }elseif ($waktubayar==36 & $totalbulanan>$kemampuan) {
+            $waktubayar=48;
+            $kemampuan=round(($pendapatan-$pengeluaran)*0.25);
+            $margin=round(($waktubayar*0.02)+1,2);
+            $totalbulanan=round(($jumlahPengajuan*$margin)/$waktubayar);
+                if ($waktubayar==48 & $totalbulanan<$kemampuan) {
+                    $kapasitasBulanan='Aman 48 bulan';
+                }elseif ($waktubayar==48 & $totalbulanan>$kemampuan) {
+                     $kapasitasBulanan="Tidak Aman";
+                    }
+        }elseif ($waktubayar==48 & $totalbulanan<$kemampuan) {
+            $kapasitasBulanan='Aman 48 bulan';
+        }
+        else {
+            $kapasitasBulanan='Tidak Aman';
+        }
+    //    echo"$nama<br>$waktubayar<br><b>total bulanan=$totalbulanan</b><br><u><i>kemampuan:$kemampuan</i></u><br><i>pengeluaran:$pengeluaran</i><br>";
+    //     dd($kapasitasBulanan);
         //jumlah pengajuan
         if ($jumlahPengajuan<=5000000) {
             $jumlahPengajuan='<=5000000';
@@ -154,20 +314,6 @@ class DataAsliController extends Controller
             $jumlahPengajuan='<=300000000';
         }
         
-     
-        //kapasitasbulanan
-        $totalbulanan=round(($pengeluarana/$pendapatan)*100);
-       
-        if ($totalbulanan<=25) {
-
-            $kapasitasBulanan='Aman';
-        }elseif ($totalbulanan<=40) {
-            $kapasitasBulanan='Dalam Pertimbangan';
-        }else {
-            $kapasitasBulanan='Tidak Aman';
-        }
-
-        // dd($jangkaWaktu);
         $model=new DataSetModel;
         $model->nama=$nama;
         $model->pekerjaan=$pekerjaan;
@@ -220,7 +366,7 @@ class DataAsliController extends Controller
 
 
      
-    return redirect()->back();
+    return redirect()->route('datatraining.index');
    }
    
     public function destroy($id)

@@ -61,10 +61,16 @@
           <span>Pemodelan</span>
         </a>
       </li>
-      <li class="nav-item Request::path()== 'datauji'? 'active' : '' ">
+       <li class="nav-item {{ Request::path()== 'datauji'? 'active' : ''  }}">
         <a class="nav-link" href="{{ url('datauji') }}">
           <i class="fas fa-fw fa-palette"></i>
           <span>Uji Data</span>
+        </a>
+      </li>
+      <li class="nav-item {{ Request::path()== 'hasiluji'? 'active' : ''  }}">
+        <a class="nav-link" href="{{ url('hasiluji') }}">
+          <i class="fas fa-fw fa-palette"></i>
+          <span>Hasil Pengujian</span>
         </a>
       </li>
       {{-- <div class="version" id="version-ruangadmin"></div> --}}
@@ -196,18 +202,18 @@
                 })
             });
   </script>
-  <script>
+  {{-- <script>
 
 function startCalc(){
 interval = setInterval("calc()",1);}
 function calc(){
-one = document.autoSumForm.pengeluaran.value;
-two = document.autoSumForm.pendapatan.value; 
+one = document.autoSumForm.pendapatan.value;
+two = document.autoSumForm.pengeluaran.value; 
 three = document.autoSumForm.persen.value; 
-document.autoSumForm.kapasitasBulanan.value = ((one * 1) / (two * 1)) * (three * 1);}
+document.autoSumForm.kapasitasBulanan.value = ((one * 1) - (two * 1)) * (three * 1);}
 function stopCalc(){
 clearInterval(interval);}
-</script>
+</script> --}}
 </body>
 
 </html>
