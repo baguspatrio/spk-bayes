@@ -26,7 +26,8 @@
                                     <div class="form-group">
 										<label for="exampleFormControlSelect1">Pekerjaan</label>
 										<select class="form-control" name="pekerjaan" id="exampleFormControlSelect1">
-											<option value="PNS">PNS</option>
+											<option value="">--pilih Pekerjaan--</option>
+											<option value="Pam Budaya">Pam Budaya</option>
 											<option value="Karyawan">Karyawan</option>
 											<option value="Pedagang">Pedagang</option>
 											<option value="Guru/Dosen">Guru/Dosen</option>
@@ -58,6 +59,7 @@
                                             <option value="12">12</option>
                                             <option value="24">24</option>
                                             <option value="36">36</option>
+											<option value="48">48</option>
 										</select>
 									</div>
                                     <div class="form-check">

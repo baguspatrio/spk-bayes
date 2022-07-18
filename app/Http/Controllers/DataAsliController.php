@@ -68,7 +68,18 @@ class DataAsliController extends Controller
    
     public function update(Request $request, $id)
     {
-        //
+        $model=DataAsliModel::find($id);
+        $model->nama=$request->nama;
+        $model->pekerjaan=$request->pekerjaan;
+        $model->jumlahPengajuan=$request->jumlahPengajuan;
+        $model->jenisPembayaran= $request->jenisPembayaran;
+        $model->jangkaWaktu=$request->jangkaWaktu;
+        $model->metodePembayaran=$request->metodePembayaran;
+        $model->pendapatan=$request->pendapatan;
+        $model->pengeluaran=$request->pengeluaran;
+        $model->save();
+
+        return redirect()->back();
     }
 
     public function hapusDuplikat(){
@@ -366,7 +377,7 @@ class DataAsliController extends Controller
 
 
      
-    return redirect()->route('datatraining.index');
+    return redirect()->route('dataset.index');
    }
    
     public function destroy($id)

@@ -139,10 +139,10 @@ class DataSetController extends Controller
     $jgkwaktulancar=$nilaijgkwaktulancar['0']->probLancar;
     $nilaimtdpembayaranlancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
     $mtdpembayaranlancar=$nilaimtdpembayaranlancar['0']->probLancar;
-    // $nilaikapasitasBulananlancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
-    // $kpsblnl=$nilaikapasitasBulananlancar['0']->probLancar;
+    $nilaikapasitasBulananlancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
+    $kpsblnl=$nilaikapasitasBulananlancar['0']->probLancar;
     
-    $lancar=(round($pekerjaanlancar*$jmlpengajuanlancar*$jnsPembayaranlancar*$jgkwaktulancar*$mtdpembayaranlancar,5)) ;
+    $lancar=(round($pekerjaanlancar*$jmlpengajuanlancar*$jnsPembayaranlancar*$jgkwaktulancar*$mtdpembayaranlancar*$kpsblnl,5)) ;
     
     //tidak lancar
     $nilaipekerjaantdklancar=DB::table('perhitungan')->where('nilai','=',$pekerjaan)->get()->toArray();
@@ -155,13 +155,13 @@ class DataSetController extends Controller
     $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probMacet;
     $nilaimtdpembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
     $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probMacet;
-    // $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
-    // $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
+    $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
+    $kapasitasbulanantidaklancar=$nilaikapasitasBulanantdklancar['0']->probMacet;
 
-    $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar,5)) ;
+    $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar*$kapasitasbulanantidaklancar,5)) ;
 
 
-     if ($lancar>$tidaklancar) {
+     if ($lancar>=$tidaklancar) {
         $prediksi="Lancar";
     }else {
         $prediksi="Tidak Lancar";
@@ -221,12 +221,12 @@ class DataSetController extends Controller
     $nilaimtdpembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
     $mtdpembayarantdklancar=$nilaimtdpembayarantdklancar['0']->probMacet;
     $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
-    $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
+    $kapasitasbulanantidklancar=$nilaikapasitasBulanantdklancar['0']->probMacet;
 
     $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar*$kapasitasbulanantidklancar,5)) ;
 
 
-     if ($lancar>=$tidaklancar) {
+     if ($lancar>$tidaklancar) {
         $prediksi="Lancar";
     }else {
         $prediksi="Tidak Lancar";
@@ -248,6 +248,7 @@ class DataSetController extends Controller
      }
     
    
+    return redirect()->route('datatraining.index');
 
    }
 

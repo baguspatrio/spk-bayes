@@ -57,7 +57,7 @@ class DataUjiController extends Controller
     //uji data pengajuan baru
     public function ujidatapengajuan(){
     
-    //   $data= DataSetModel::all();
+     HasilUji::truncate();
       $dataatribut=DB::table('atribut')->get()->toArray();
      $datauji=DataUji::all();
      foreach ($datauji as $key ) {
@@ -306,17 +306,17 @@ class DataUjiController extends Controller
     
     //tidak lancar
     $nilaipekerjaantdklancar=DB::table('perhitungan')->where('nilai','=',$pekerjaan)->get()->toArray();
-    $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probLancar;
+    $pekerkjaantdklancar=$nilaipekerjaantdklancar['0']->probMacet;
     $nilaijmlpengajuantdklancar=DB::table('perhitungan')->where('nilai','=',$jumlahPengajuan)->get()->toArray();
-    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probLancar;    
+    $jmlpengajuantdklancar=$nilaijmlpengajuantdklancar['0']->probMacet;    
     $nilaijnspembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$jenisPembayaran)->get()->toArray();
-    $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probLancar;
+    $jnspembayarantdklancar=$nilaijnspembayarantdklancar['0']->probMacet;
     $nilaijgkwaktutdklancar=DB::table('perhitungan')->where('nilai','=',$jangkaWaktu)->get()->toArray();
-    $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probLancar;
+    $jgkwaktutdklancar=$nilaijgkwaktutdklancar['0']->probMacet;
     $nilaimtdpembayarantdklancar=DB::table('perhitungan')->where('nilai','=',$metodePembayaran)->get()->toArray();
-    $mtdpembayarantidaklancar=$nilaimtdpembayarantdklancar['0']->probLancar;
+    $mtdpembayarantidaklancar=$nilaimtdpembayarantdklancar['0']->probMacet;
     $nilaikapasitasBulanantdklancar=DB::table('perhitungan')->where('nilai','=',$kapasitasBulanan)->get()->toArray();
-    $kapasitasbulanantidaklancar=$nilaikapasitasBulanantdklancar['0']->probLancar;
+    $kapasitasbulanantidaklancar=$nilaikapasitasBulanantdklancar['0']->probMacet;
 
     $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantidaklancar*$kapasitasbulanantidaklancar,5)) ;
 
@@ -370,7 +370,7 @@ class DataUjiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model=DataUji::findid($id);
+        $model=DataUji::find($id);
         $model->nama=$request->nama;
         $model->pekerjaan=$request->pekerjaan;
         $model->jumlahPengajuan=$request->jumlahPengajuan;
@@ -391,7 +391,7 @@ class DataUjiController extends Controller
      */
     public function destroy($id)
     {
-        $data= DataAsliModel::find($id);
+        $data= DataUji::find($id);
         $data->delete();
         return redirect()->back();
     }

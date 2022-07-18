@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perhitungan;
+use App\Models\DataTraining;
 use Illuminate\Http\Request;
+use DB;
 
 class PerhitunganController extends Controller
 {
@@ -15,7 +17,12 @@ class PerhitunganController extends Controller
     public function index()
     {
         $data= Perhitungan::all();
-        return view('pemodelan.pemodelan',compact('data'));
+        $perhitungan=DataTraining::all()->count();
+        $tidaklayaktidaklancar=DB::table('datatraining')->where('prediksi','=','Tidak Lancar')->where('keterangan','=','Tidak Lancar')->count();
+        $tidaklayaklancar=DB::table('datatraining')->where('prediksi','=','Lancar')->where('keterangan','=','Tidak Lancar')->count();
+        $layaklancar=DB::table('datatraining')->where('prediksi','=','Lancar')->where('keterangan','=','Lancar')->count();
+        $layaktidaklancar=DB::table('datatraining')->where('prediksi','=','Tidak Lancar')->where('keterangan','=','Lancar')->count();
+        return view('pemodelan.pemodelan',compact('data','perhitungan','layaklancar','layaktidaklancar','tidaklayaktidaklancar','tidaklayaklancar'));
     }
 
     /**

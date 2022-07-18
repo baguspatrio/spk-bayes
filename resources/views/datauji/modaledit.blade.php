@@ -7,9 +7,9 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
-                  <form action="{{ url('datauji/'.$item->id)}}" method="post" enctype="multipart/form-data">
-                    
+                  <form action="{{ route('datauji.update',$item->id)}}" method="post" enctype="multipart/form-data">
                   @csrf
+       				 @method('PUT')
                     <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -30,8 +30,8 @@
                                     <div class="form-group">
 										<label for="exampleFormControlSelect1">Pekerjaan</label>
 										<select class="form-control" name="pekerjaan" id="exampleFormControlSelect1">
-                      <option value="{{ $item->pekerjaan;}}">{{ $item->pekerjaan; }}</option>
-											<option value="PNS">PNS</option>
+                     						 <option value="{{ $item->pekerjaan;}}">{{ $item->pekerjaan; }}</option>
+											<option value="Pam Budaya">Pam Budaya</option>
 											<option value="Karyawan">Karyawan</option>
 											<option value="Pedagang">Pedagang</option>
 											<option value="Guru/Dosen">Guru/Dosen</option>
@@ -75,9 +75,10 @@
 										<select class="form-control" name="jangkaWaktu" id="exampleFormControlSelect1">
 											<option value="3">3</option>
 											<option value="6">6</option>
-                      <option value="12">12</option>
-                      <option value="24">24</option>
-                      <option value="36">36</option>
+											<option value="12">12</option>
+											<option value="24">24</option>
+											<option value="36">36</option>
+											<option value="48">48</option>
 										</select>
 									</div>
                   @if ($item->metodePembayaran=='Transfer')
