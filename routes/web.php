@@ -29,8 +29,17 @@ Route::get('hapusduplikat',[DataAsliController::class,'hapusDuplikat']);
 Route::get('transform',[DataAsliController::class,'transform']);
 Route::resource('dataset',DataSetController::class);
 Route::get('ujidataset',[DataSetController::class,'ujidataset']);
+Route::get('hapusdataset',[DataSetController::class,'hapusdataset']);
 Route::resource('pemodelan',PerhitunganController::class);
 Route::resource('datatraining',DataTrainingController::class);
 Route::resource('datauji',DataUjiController::class);
 Route::get('ujidata',[DataUjiController::class,'ujidatapengajuan']);
 Route::resource('hasiluji',HasilUjiController::class);
+Auth::routes(
+
+    ['register' => false,
+'reset' => false,]
+);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

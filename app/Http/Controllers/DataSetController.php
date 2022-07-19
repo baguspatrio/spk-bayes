@@ -18,6 +18,10 @@ class DataSetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data= DataSetModel::all();
@@ -55,6 +59,12 @@ class DataSetController extends Controller
         $model->save();
         
         return redirect()->back();
+    }
+
+    public function hapusdataset(){
+        DataSetModel::truncate();
+
+        return redirect()->route('dataasli.index');
     }
 
    public function ujidataset(){

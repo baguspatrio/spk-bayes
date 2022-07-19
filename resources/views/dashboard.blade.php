@@ -94,7 +94,14 @@
                       <tr>
                         <td>{{ $key->nama}}</td>
                         <td>{{ $key->jumlahPengajuan }}</td>
-                        <td><span class="badge badge-success">{{ $key->prediksi }}</span></td>
+                        <td>
+                          @if ($key->prediksi=='Lancar')
+                          <span class="badge badge-success">{{ $key->prediksi }}</span>
+                          @endif
+                          @if ($key->prediksi=='Tidak Lancar')
+                          <span class="badge badge-danger">{{ $key->prediksi }}</span>
+                          @endif
+                        </td>
                         
                       </tr> 
                         @endforeach
@@ -129,11 +136,17 @@
                       </tr>
                     </tfoot>
                     <tbody>
-                     @foreach ($datatesting as $key)
+                     @foreach ($uji as $key)
                       <tr>
                         <td>{{ $key->nama}}</td>
                         <td>{{ $key->jumlahPengajuan }}</td>
-                        <td><span class="badge badge-success">{{ $key->prediksi }}</span></td>
+                        <td>@if ($key->keterangan=='Lancar')
+                          <span class="badge badge-success">{{ $key->keterangan }}</span>
+                          @endif
+                          @if ($key->keterangan=='Tidak Lancar')
+                          <span class="badge badge-danger">{{ $key->keterangan }}</span>
+                          @endif
+                        </td>
                         
                       </tr> 
                         @endforeach

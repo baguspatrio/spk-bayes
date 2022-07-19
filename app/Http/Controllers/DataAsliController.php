@@ -16,6 +16,10 @@ class DataAsliController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data= DataAsliModel::all();
@@ -370,6 +374,8 @@ class DataAsliController extends Controller
                $hapus=DataSetModel::find($id);
                $hapus->delete();
                $jumlahduplikat++;
+            }else {
+                return redirect()->route('dataset.index');
             }
            
         }

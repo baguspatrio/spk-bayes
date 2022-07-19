@@ -6,7 +6,7 @@ use App\Models\DataAsliModel;
 use App\Models\DataSetModel;
 use App\Models\DataTraining;
 use App\Models\DataTesting;
-use App\Models\DataUji;
+use App\Models\HasilUji;
 use DB;
 
 class DashboardController extends Controller
@@ -16,14 +16,19 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data=DataTesting::all()->count();
         $datatesting=DB::table('datatesting')->limit(10)->where('prediksi','=','Lancar')->get();
         $training=DataTraining::all()->count();
+        $uji=HasilUji::all();
         $layak=DataTesting::all()->where('keterangan','=','Lancar')->count();
         $macet=DataTesting::all()->where('keterangan','=','Tidak Lancar')->count();
-        return view('dashboard',compact('data','training','layak','macet','datatesting'));
+        return view('dashboard',compact('data','training','layak','macet','datatesting','uji'));
     }
 
     /**
