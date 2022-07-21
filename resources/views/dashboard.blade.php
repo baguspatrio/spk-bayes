@@ -78,14 +78,12 @@
                     <thead class="thead-light">
                       <tr>
                         <th>Nama</th>
-                        <th>Jumlah Pengajuan</th>
                         <th>Status</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
                          <th>Nama</th>
-                        <th>Jumlah Pengajuan</th>
                         <th>Status</th>
                       </tr>
                     </tfoot>
@@ -93,7 +91,6 @@
                      @foreach ($datatesting as $key)
                       <tr>
                         <td>{{ $key->nama}}</td>
-                        <td>{{ $key->jumlahPengajuan }}</td>
                         <td>
                           @if ($key->prediksi=='Lancar')
                           <span class="badge badge-success">{{ $key->prediksi }}</span>
@@ -115,7 +112,7 @@
             <div class="col-xl-6 col-lg-7 mb-4">
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Pengajuan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Data Pengajuan Baru</h6>
                   {{-- <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
                       class="fas fa-chevron-right"></i></a> --}}
                 </div>
@@ -125,14 +122,12 @@
                       <tr>
                         <th>Nama</th>
                         <th>Jumlah Pengajuan</th>
-                        <th>Status</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
                          <th>Nama</th>
                         <th>Jumlah Pengajuan</th>
-                        <th>Status</th>
                       </tr>
                     </tfoot>
                     <tbody>
@@ -140,13 +135,6 @@
                       <tr>
                         <td>{{ $key->nama}}</td>
                         <td>{{ $key->jumlahPengajuan }}</td>
-                        <td>@if ($key->keterangan=='Lancar')
-                          <span class="badge badge-success">{{ $key->keterangan }}</span>
-                          @endif
-                          @if ($key->keterangan=='Tidak Lancar')
-                          <span class="badge badge-danger">{{ $key->keterangan }}</span>
-                          @endif
-                        </td>
                         
                       </tr> 
                         @endforeach

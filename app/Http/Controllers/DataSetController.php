@@ -114,7 +114,7 @@ class DataSetController extends Controller
         $nilaiatributlancar=DB::table('datatraining')->where($atribut,'=',$value)->where('keterangan','=','Lancar') ->get()->count();
         $probtdklancar=(round($nilaiatributmacet/$hitungtidaklancar,5)) ;
         $problancar=(round($nilaiatributlancar/$hitunglancar,5));
-        
+       
         $model= new Perhitungan;
         $model->atribut=$atribut;
         $model->nilai=$value;
@@ -236,7 +236,7 @@ class DataSetController extends Controller
     $tidaklancar=(round($pekerkjaantdklancar*$jmlpengajuantdklancar*$jnspembayarantdklancar*$jgkwaktutdklancar*$mtdpembayarantdklancar*$kapasitasbulanantidklancar,5)) ;
 
 
-     if ($lancar>$tidaklancar) {
+     if ($lancar>=$tidaklancar) {
         $prediksi="Lancar";
     }else {
         $prediksi="Tidak Lancar";

@@ -7,6 +7,7 @@ use App\Models\DataSetModel;
 use App\Models\DataTraining;
 use App\Models\DataTesting;
 use App\Models\HasilUji;
+use App\Models\DataUji;
 use DB;
 
 class DashboardController extends Controller
@@ -25,7 +26,7 @@ class DashboardController extends Controller
         $data=DataTesting::all()->count();
         $datatesting=DB::table('datatesting')->limit(10)->where('prediksi','=','Lancar')->get();
         $training=DataTraining::all()->count();
-        $uji=HasilUji::all();
+        $uji=DataUji::all();
         $layak=DataTesting::all()->where('keterangan','=','Lancar')->count();
         $macet=DataTesting::all()->where('keterangan','=','Tidak Lancar')->count();
         return view('dashboard',compact('data','training','layak','macet','datatesting','uji'));
