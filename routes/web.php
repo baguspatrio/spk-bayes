@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class,'index']);
 Route::resource('dataasli', DataAsliController::class);
 Route::post('importfile',[ DataAsliController::class,'importExcel']);
-Route::get('hapusduplikat',[DataAsliController::class,'hapusDuplikat']);
+Route::get('hapusdataasli',[DataAsliController::class,'hapusseluruhdata']);
 Route::get('transform',[DataAsliController::class,'transform']);
 Route::resource('dataset',DataSetController::class);
 Route::get('ujidataset',[DataSetController::class,'ujidataset']);

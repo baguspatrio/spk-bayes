@@ -11,6 +11,7 @@
                   {{-- <button type="button" class="btn-success m-3" data-toggle="modal" data-target="#tambahdata"id="#myBtn">Tambah Data</button> --}}
                   <button type="button" class="btn-info"data-toggle="modal" data-target="#importdata"id="#myBtn">Import Data</button>
                   {{-- <a href="hapusduplikat" class=" btn btn-danger ml-3 ">Hapus Duplikat</a> --}}
+                  <a href="hapusdataasli" onclick="return confirm('Apakah anda Yakin Hapus seluruh data?')" class=" btn btn-danger ml-3 " >Hapus Seluruh Data</a>
                   <a href="transform" class=" btn btn-primary ml-3 ">Preprosessing Data</a>
                   {{-- <form action="{{ url('hapusduplikat') }}" method="POST">
                     @csrf

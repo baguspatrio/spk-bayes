@@ -35,6 +35,10 @@ class DataAsliController extends Controller
     {
         
     }
+    public function hapusseluruhdata(){
+        DataAsliModel::truncate();
+        return redirect()->route('dataasli.index');
+    }
 
     public function importExcel(Request $request){
 
@@ -369,13 +373,14 @@ class DataAsliController extends Controller
             
             ->get();
 
-            if ($flag->count()>1) {
+            if ($flag->count()==0) {
 
+               
+               return redirect()->route('dataset.index');
+            }elseif($flag->count()>1) {
                $hapus=DataSetModel::find($id);
                $hapus->delete();
                $jumlahduplikat++;
-            }else {
-                return redirect()->route('dataset.index');
             }
            
         }
